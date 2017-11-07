@@ -71,7 +71,6 @@ var AddListComponent = (function () {
     };
     AddListComponent.prototype.onSubmit = function () {
         var _this = this;
-        // console.log(this.newList.category);
         this.listServ.addList(this.newList).subscribe(function (response) {
             if (response.success === true) {
                 _this.addList.emit(_this.newList);
@@ -329,7 +328,6 @@ var ViewListComponent = (function () {
     };
     ViewListComponent.prototype.loadLists = function () {
         var _this = this;
-        console.log('cos');
         // Get all lists from server and update the lists property
         this.listServ.getAllLists().subscribe(function (response) { return (_this.lists = response); });
     };
@@ -339,6 +337,7 @@ var ViewListComponent = (function () {
         this.listServ
             .deleteList(list._id)
             .subscribe(function (response) { return (_this.lists = _this.lists.filter(function (lists) { return lists !== list; })); });
+        this.loadLists(); // <-- ***
     };
     // onAddList will be invoked when the child component emits an event
     ViewListComponent.prototype.onAddList = function (newList) {

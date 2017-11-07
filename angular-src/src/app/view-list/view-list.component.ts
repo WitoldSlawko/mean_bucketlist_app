@@ -19,7 +19,6 @@ export class ViewListComponent implements OnInit {
   }
 
   public loadLists() {
-    console.log('cos');
     // Get all lists from server and update the lists property
     this.listServ.getAllLists().subscribe(response => (this.lists = response));
   }
@@ -31,6 +30,7 @@ export class ViewListComponent implements OnInit {
       .subscribe(
         response => (this.lists = this.lists.filter(lists => lists !== list))
       );
+      this.loadLists(); // <-- ***
   }
 
   // onAddList will be invoked when the child component emits an event

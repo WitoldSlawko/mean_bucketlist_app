@@ -13,14 +13,11 @@ router.get('/',(req,res) => {
 		else {
 			res.write(JSON.stringify({success: true, lists:lists},null,2));
 			res.end();	
-			
 	}	
 	});
 });
 
-
 //POST HTTP method to /bucketlist
-
 router.post('/', (req,res,next) => {
 	let newList = new bucketlist({
 		title: req.body.title,
@@ -30,14 +27,12 @@ router.post('/', (req,res,next) => {
 	bucketlist.addList(newList,(err, list) => {
 		if(err) {
 			res.json({success: false, message: `Failed to create a new list. Error: ${err}`});
-
 		}
 		else 
 			res.json({success:true, message: "Added successfully."});
 	
 	});
 });
-
 
 //DELETE HTTP method to /bucketlist. Here, we pass in a params which is the object id.
 router.delete('/:id', (req,res,next)=> {

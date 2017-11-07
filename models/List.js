@@ -15,14 +15,9 @@ const BucketlistSchema = mongoose.Schema({
         enum: ['High', 'Medium', 'Low']
     }
 });
-/*
-BucketlistSchema.post('save', function(doc){
-    BucketlistSchema._id = doc.id;
-})
-*/
+
 //Create a model using mongoose.model and export it
 const BucketList = module.exports = mongoose.model('BucketList', BucketlistSchema );
-
 
 //BucketList.find() returns all the lists
 module.exports.getAllLists = (callback) => {

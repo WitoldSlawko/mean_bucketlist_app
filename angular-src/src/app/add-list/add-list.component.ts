@@ -22,7 +22,6 @@ export class AddListComponent implements OnInit {
   }
 
   public onSubmit() {
-    // console.log(this.newList.category);
     this.listServ.addList(this.newList).subscribe(response => {
       if (response.success === true) {
         this.addList.emit(this.newList);
