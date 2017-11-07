@@ -7,12 +7,13 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ListService {
-  constructor(private http: Http) {}
 
   private serverApi = 'http://localhost:3000';
 
+  constructor(private http: Http) {}
+ 
   public getAllLists(): Observable<List[]> {
-    let URI = `${this.serverApi}/bucketlist/`;
+    const URI = `${this.serverApi}/bucketlist/`;
     return this.http
       .get(URI)
       .map(res => res.json())
@@ -20,16 +21,16 @@ export class ListService {
   }
 
   public deleteList(listId: string) {
-    let URI = `${this.serverApi}/bucketlist/${listId}`;
-    let headers = new Headers();
+    const URI = `${this.serverApi}/bucketlist/${listId}`;
+    const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.delete(URI, { headers: headers }).map(res => res.json());
   }
 
   public addList(list: List) {
-    let URI = `${this.serverApi}/bucketlist/`;
-    let headers = new Headers();
-    let body = JSON.stringify({
+    const URI = `${this.serverApi}/bucketlist/`;
+    const headers = new Headers();
+    const body = JSON.stringify({
       title: list.title,
       description: list.description,
       category: list.category
